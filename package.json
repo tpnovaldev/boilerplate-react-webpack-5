@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack",
-  "version": "1.0.0",
-  "description": "Base structure for react webpack",
+  "name": "boilerplate-react-webpack-5",
+  "version": "1.0.2",
+  "description": "Webpack 5 boilerplate for react using babel, sass, with a hot dev server and an optimized production build.Configured with eslint rules.",
   "main": "index.js",
   "scripts": {
     "serve": "webpack serve --mode development",
