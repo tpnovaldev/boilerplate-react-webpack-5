@@ -68,12 +68,13 @@ module.exports = (env, argv) => {
       ],
     },
     optimization: {
+      splitChunks: { chunks: 'all' }, // Code splitting
       minimize: true, // Minimize files in development as well
       minimizer: [
         new CssMinimizerPlugin(), // Minify CSS
         new TerserPlugin({
           test: /\.js(\?.*)?$/i,
-        }), // Minify JavaScript
+        }), // Optimize and minimize JavaScript
         new ImageMinimizerPlugin({
           minimizer: {
             implementation: ImageMinimizerPlugin.imageminMinify,
@@ -117,7 +118,7 @@ module.exports = (env, argv) => {
         favicon: './public/favicon.png',
         template: './public/index.html',
         filename: 'index.html',
-      }), // Create HTML files to serve your webpack bundles
+      }), // Generate HTML files from template
       new ESLintPlugin(),
       ...(argv.mode === 'production'
         ? [
