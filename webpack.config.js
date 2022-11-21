@@ -4,17 +4,16 @@ const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 module.exports = (env, argv) => {
   return {
-    entry: {
-      'bundle': './src/index.js'
-    },
+    entry: './src/index.js',
     devtool: 'source-map', // created a source map
     output: {
       // Source files for production server
-      path: path.resolve(__dirname, './dist'),
-      filename: '[name].js',
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].bundle.js',
       assetModuleFilename: (pathData) => {
         const filepath = path.dirname(pathData.filename).split("/").slice(1).join("/");
         return `${filepath}/[name].[hash][ext][query]`;
@@ -23,7 +22,7 @@ module.exports = (env, argv) => {
     },
     devServer: {
       // Running source files in development server
-      static: path.join(__dirname, './dist'),
+      static: path.join(__dirname, 'dist'),
       port: 3000,
       open: true,
       hot: true
@@ -70,7 +69,6 @@ module.exports = (env, argv) => {
             implementation: ImageMinimizerPlugin.imageminMinify,
             options: {
               // Lossless optimization with custom option
-              // Feel free to experiment with options for better result for you
               plugins: [
                 ['gifsicle', { interlaced: true }],
                 ['jpegtran', { progressive: true }],
@@ -105,6 +103,7 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
+      new NodePolyfillPlugin(),
       new HtmlWebpackPlugin({
         template: './index.html',
         filename: 'index.html',

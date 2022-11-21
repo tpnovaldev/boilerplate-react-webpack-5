@@ -32,6 +32,7 @@
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^10.0.1",
     "mini-css-extract-plugin": "^2.7.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "postcss-import": "^15.0.0",
     "postcss-loader": "^7.0.1",
     "postcss-preset-env": "^7.8.3",
