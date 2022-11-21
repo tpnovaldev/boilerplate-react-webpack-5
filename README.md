@@ -2,8 +2,6 @@
 
 [Webpack 5](https://webpack.js.org/) boilerplate for [react](https://reactjs.org/) using babel, sass, with a hot dev server and an optimized production build.Configured with eslint rules.
 
-TMDB-Test uses [TheMovieDB API](https://api.themoviedb.org) to get data.
-
 ## Install
 
 Clone the repo using
@@ -14,17 +12,24 @@ Install all the required dependencies using
 
     npm install
 
-### Launch the App
+### Development Server
 
-Launch the app for development using
+You can view the development server at `localhost:3000`
 
     npm run serve
 
-### Build the app
+### Production Build
 
 Build the app for production using
 
     npm run build
+
+## Features
+
+- [Webpack](https://webpack.js.org/) - Module and asset bundler
+- [Babel](https://babeljs.io/) - JavaScript compiler
+- [Sass](https://sass-lang.com/) - Syntactically Awesome Style Sheets
+- [Eslint](https://eslint.org/) - Check problems with your JavaScript code
 
 ## Screenshots
 
