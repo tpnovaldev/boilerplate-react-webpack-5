@@ -6,6 +6,13 @@ import WebpackLogo from './assets/images/webpack_logo.png'
 import ReactLogo from './assets/images/react_logo.png'
 
 export default function App() {
+  const openButtonLink = () => {
+    window.open(
+      'https://github.com/tpnovaldev/boilerplate-react-webpack-5',
+      '_blank'
+    )
+  }
+
   return (
     <>
       <div className="main">
@@ -13,12 +20,18 @@ export default function App() {
           <img src={WebpackLogo} width={257} height={100} alt="webpack" />
           <img src={ReactLogo} width={75} height={65} alt="react" />
         </div>
-        <Typography>
-          What date is it? { new Date().toDateString() }
-        </Typography>
-        <Button>
-          Load Date
-        </Button>
+        <div className="content">
+          <Typography style={{ marginBottom: '16rem' }}>
+            Boilerplate React Webpack 5
+          </Typography>
+          <p>
+            Webpack 5 boilerplate for react using babel, sass, with a hot dev server and an optimized production build.Configured with eslint rules.
+            <small>It's posted on { new Date().toDateString() }</small>
+          </p>
+          <Button onClick={openButtonLink}>
+            Get started it
+          </Button>
+        </div>
       </div>
     </>
   )
