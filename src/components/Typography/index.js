@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const Typography = ({ children }) => {
+export const Typography = ({ children, ...rest }) => {
   return (
-    <h1>{children}</h1>
+    <h1 {...rest}>{children}</h1>
   )
 }
