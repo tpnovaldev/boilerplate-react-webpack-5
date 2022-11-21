@@ -1,9 +1,23 @@
-import React from 'react';
-import Typography from './components/Typography';
-import Button from './components/Button';
-import Logos from './components/Logos';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { usersSelector } from './features/users/userSlice';
+import { fetchUsers } from './features/users/userService';
+import {
+  Button, Logos, Typography, Users,
+} from './components';
 
 export default function App() {
+  // set up dispatch
+  const dispatch = useDispatch();
+
+  // fetch data from our store
+  const { loading, error, users } = useSelector(usersSelector);
+
+  // hook to fetch items
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [dispatch])
+
   const openInNewTab = (url) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -27,6 +41,8 @@ export default function App() {
         <Button onClick={() => openInNewTab('https://github.com/tpnovaldev/boilerplate-react-webpack-5')}>
           Get started it
         </Button>
+        <h6>Peoples who colaborate</h6>
+        <Users loading={loading} error={error} data={users} />
       </div>
     </div>
   );
