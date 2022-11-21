@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -51,7 +52,9 @@ module.exports = (env, argv) => {
           // Convert SCSS files into CSS file
           test: /\.(scss|css)$/,
           use: [
-            { loader: argv.mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader' }, // Inject CSS into the DOM
+            {
+              loader: argv.mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+            }, // Inject CSS into the DOM
             { loader: 'css-loader', options: { sourceMap: true } }, // Resolve CSS imports
             { loader: 'postcss-loader', options: { sourceMap: true } }, // Load SCSS and compile to CSS
             { loader: 'sass-loader', options: { sourceMap: true } }, // Load SCSS and compile to CSS
@@ -92,9 +95,7 @@ module.exports = (env, argv) => {
                             removeViewBox: false,
                             addAttributesToSVGElement: {
                               params: {
-                                attributes: [
-                                  { xmlns: 'http://www.w3.org/2000/svg' },
-                                ],
+                                attributes: [{ xmlns: 'http://www.w3.org/2000/svg' }],
                               },
                             },
                           },
@@ -118,7 +119,14 @@ module.exports = (env, argv) => {
         filename: 'index.html',
       }), // Create HTML files to serve your webpack bundles
       new ESLintPlugin(),
-      ...(argv.mode === 'production' ? [new MiniCssExtractPlugin({ filename: '[name].css', chunkFilename: '[id].css' })] : []), // Extracts CSS into separate files
+      ...(argv.mode === 'production'
+        ? [
+            new MiniCssExtractPlugin({
+              filename: '[name].css',
+              chunkFilename: '[id].css',
+            }),
+          ]
+        : []), // Extracts CSS into separate files
     ],
   };
 
