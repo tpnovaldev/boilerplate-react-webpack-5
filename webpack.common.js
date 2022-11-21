@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable indent */
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -11,12 +12,10 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 module.exports = (env, argv) => {
   const configs = {
     entry: './src/index.js',
-    devtool: argv.mode === 'production' ? 'source-map' : 'inline-source-map', // Created a source map
     output: {
-      // Source files for production server
-      path: path.resolve(__dirname, 'dist'),
-      // publicPath: '/',
+      path: path.resolve(__dirname, './dist'),
       filename: '[name].bundle.js',
+      chunkFilename: '[name].chunk.bundle.js',
       assetModuleFilename: (pathData) => {
         const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
         return `${filepath}/[name].[hash][ext][query]`;
@@ -25,16 +24,9 @@ module.exports = (env, argv) => {
     },
     resolve: {
       alias: {
-        components: path.resolve(__dirname, 'src'),
+        components: path.resolve(__dirname, './src'),
       },
       extensions: ['.js', '.jsx'],
-    },
-    devServer: {
-      // Running source files in development server
-      static: path.join(__dirname, 'dist'),
-      port: 3000,
-      open: true,
-      hot: true,
     },
     module: {
       rules: [
@@ -53,11 +45,24 @@ module.exports = (env, argv) => {
           test: /\.(scss|css)$/,
           use: [
             {
+              // Inject CSS into the DOM
               loader: argv.mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-            }, // Inject CSS into the DOM
-            { loader: 'css-loader', options: { sourceMap: true } }, // Resolve CSS imports
-            { loader: 'postcss-loader', options: { sourceMap: true } }, // Load SCSS and compile to CSS
-            { loader: 'sass-loader', options: { sourceMap: true } }, // Load SCSS and compile to CSS
+            },
+            {
+              // Resolve CSS imports
+              loader: 'css-loader',
+              options: { sourceMap: true },
+            },
+            {
+              // Load SCSS and compile to CSS
+              loader: 'postcss-loader',
+              options: { sourceMap: true },
+            },
+            {
+              // Load SCSS and compile to CSS
+              loader: 'sass-loader',
+              options: { sourceMap: true },
+            },
           ],
         },
         {
@@ -68,13 +73,26 @@ module.exports = (env, argv) => {
       ],
     },
     optimization: {
-      splitChunks: { chunks: 'all' }, // Code splitting
+      // Code splitting
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          reactVendor: {
+            test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+            name: 'vendor-react',
+            chunks: 'all',
+          },
+        },
+      },
       minimize: true, // Minimize files in development as well
       minimizer: [
-        new CssMinimizerPlugin(), // Minify CSS
+        // Minify CSS
+        new CssMinimizerPlugin(),
+        // Optimize and minimize JavaScript
         new TerserPlugin({
           test: /\.js(\?.*)?$/i,
-        }), // Optimize and minimize JavaScript
+        }),
+        // Optimize (compress) all images
         new ImageMinimizerPlugin({
           minimizer: {
             implementation: ImageMinimizerPlugin.imageminMinify,
@@ -108,18 +126,21 @@ module.exports = (env, argv) => {
               ],
             },
           },
-        }), // Optimize (compress) all images
+        }),
       ],
     },
     plugins: [
       new NodePolyfillPlugin(),
+      // Generate HTML files from template
       new HtmlWebpackPlugin({
         title: 'Boilerplate React Webpack 5',
         favicon: './public/favicon.png',
         template: './public/index.html',
         filename: 'index.html',
-      }), // Generate HTML files from template
+      }),
+      // Checking & fixing JavaScript code
       new ESLintPlugin(),
+      // Extracts CSS into separate files
       ...(argv.mode === 'production'
         ? [
             new MiniCssExtractPlugin({
@@ -127,7 +148,7 @@ module.exports = (env, argv) => {
               chunkFilename: '[id].css',
             }),
           ]
-        : []), // Extracts CSS into separate files
+        : []),
     ],
   };
 

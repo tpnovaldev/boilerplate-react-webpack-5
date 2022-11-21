@@ -1,4 +1,6 @@
-export { default as Button } from './Button';
-export { default as Logos } from './Logos';
-export { default as Typography } from './Typography';
-export { default as Users } from './Users';
+import { lazy } from 'react';
+
+export const Button = lazy(() => import(/* webpackChunkName: "Button" */ './Button'));
+export const Logos = lazy(() => import(/* webpackChunkName: "Logos" */ './Logos'));
+export const Typography = lazy(() => import(/* webpackChunkName: "Typography" */ './Typography'));
+export const Users = lazy(() => import(/* webpackChunkName: "Users" */ './Users'));
