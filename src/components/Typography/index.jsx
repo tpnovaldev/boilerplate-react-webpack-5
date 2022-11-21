@@ -3,8 +3,6 @@
 import React from 'react';
 
 function Typography({ children, ...rest }) {
-  return (
-    <h1 {...rest}>{children}</h1>
-  );
+  return <h1 {...rest}>{children}</h1>;
 }
 export default Typography;

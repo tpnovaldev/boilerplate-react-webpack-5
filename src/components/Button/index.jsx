@@ -5,7 +5,9 @@ import React from 'react';
 
 function Button({ children, ...rest }) {
   return (
-    <button style={{ marginTop: '24rem' }} {...rest}>{children}</button>
+    <button style={{ marginTop: '24rem' }} {...rest}>
+      {children}
+    </button>
   );
 }
 
