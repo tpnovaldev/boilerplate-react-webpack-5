@@ -4,6 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
@@ -19,6 +20,12 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: 'assets/css/[name].[contenthash].min.css',
       chunkFilename: 'assets/css/[id].min.css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        // Copy SASS folder into /dist
+        { from: 'src/styles', to: 'assets/sass' },
+      ],
     }),
   ],
   optimization: {
