@@ -1,10 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'development',
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].chunk.bundle.js',
+  },
   devtool: 'inline-source-map', // Created a source map
   devServer: {
     // Running source files in development server
@@ -27,7 +31,7 @@ module.exports = merge(common, {
       },
       {
         // Convert SCSS files into CSS file
-        test: /\.(scss|css)$/,
+        test: /\.(s[ac]ss)$/i,
         use: [
           { loader: 'style-loader' }, // Inject CSS into the DOM
           { loader: 'css-loader', options: { sourceMap: true } }, // Resolve CSS imports
@@ -42,16 +46,11 @@ module.exports = merge(common, {
       },
     ],
   },
-  optimization: {
-    // Code splitting
-    splitChunks: {
-      chunks: 'all',
-    },
-    minimize: true, // Minimize files in development as well
-    minimizer: [
-      // Minify CSS
-      new CssMinimizerPlugin(),
-    ],
-  },
-  plugins: [],
+  plugins: [
+    // This extracts CSS into separate files
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].min.css',
+      chunkFilename: '[id].min.css',
+    }),
+  ],
 });
