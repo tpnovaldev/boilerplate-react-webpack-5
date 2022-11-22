@@ -22,6 +22,7 @@ module.exports = {
   plugins: ['react', 'jsx-a11y', 'prettier'],
   rules: {
     semi: 0,
+    'linebreak-style': ['error', 'windows'],
     'react/jsx-indent': ['error', 2],
     'max-len': [2, 120, 2],
     'no-console': 'warn',
