@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Typography from './components/Typography';
+
 import Button from './components/Button';
 import Logos from './components/Logos';
 
@@ -12,15 +14,12 @@ export default function App() {
     <div className="main">
       <Logos />
       <div className="content">
-        <Typography style={{ marginBottom: '16rem' }}>
-          Boilerplate React Webpack 5
-        </Typography>
+        <Typography style={{ marginBottom: '16rem' }}>Boilerplate React Webpack 5</Typography>
         <p>
-          Webpack 5 boilerplate for react using babel, sass, with a hot dev
-          server and an optimized production build.Configured with eslint rules.
+          Webpack 5 boilerplate for react using babel, sass, with a hot dev server and an optimized production
+          build.Configured with eslint rules.
           <small>
             Its posted on
-            {' '}
             {new Date().toDateString()}
           </small>
         </p>

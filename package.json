@@ -6,9 +6,12 @@
   "scripts": {
     "serve": "webpack serve --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "lint:fix": "eslint ./src --ext .jsx,.js --quiet --fix --ignore-path ./.gitignore",
+    "lint:scss": "stylelint \"./src/**/*.scss\" --customSyntax postcss-scss",
+    "lint:scss:fix": "stylelint \"./src/**/*.scss\" --customSyntax postcss-scss --fix --ignore-path ./.gitignore",
+    "lint:js": "eslint . --ext .js,.jsx",
+    "lint:js:fix": "npm run lint:js -- --fix --ignore-path ./.gitignore",
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,css,md,json}\" ",
-    "lint": "npm run lint:format && npm run lint:fix "
+    "lint": "npm run lint:format && npm run lint:scss:fix && npm run lint:js:fix"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +28,7 @@
     "autoprefixer": "^10.4.13",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^9.1.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "cssnano": "^5.1.14",
@@ -50,16 +54,37 @@
     "imagemin-svgo": "^10.0.1",
     "mini-css-extract-plugin": "^2.7.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
+    "postcss": "^8.4.19",
     "postcss-import": "^15.0.0",
+    "postcss-lit": "^0.5.0",
     "postcss-loader": "^7.0.1",
     "postcss-preset-env": "^7.8.3",
+    "postcss-scss": "^4.0.5",
     "prettier": "^2.7.1",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
+    "stylelint": "^14.15.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard": "^29.0.0",
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint . --fix",
+      "git add"
+    ],
+    "src/**/*.scss": [
+      "stylelint --syntax scss --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

@@ -48,9 +48,7 @@ module.exports = {
       {
         // Compatibility for fonts
         test: /\.(woff|woff2|eot|ttf)$/,
-        use: [
-          { loader: 'file-loader' },
-        ],
+        use: [{ loader: 'file-loader' }],
       },
     ],
   },
