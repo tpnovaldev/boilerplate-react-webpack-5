@@ -1,12 +1,12 @@
 // Base Components
-@import url('./base/normalize');
-@import url('./base/reset');
-@import url('./base/typography');
+@import './base/normalize';
+@import './base/reset';
+@import './base/typography';
 
 // Layout Components
-@import url('./layouts/mainLayout');
+@import './layouts/mainLayout';
 
 // Components
-@import url('../components/Button/button');
-@import url('../components/Typography/typography');
-@import url('../components/Logos/logos');
+@import '../components/Button/button';
+@import '../components/Typography/typography';
+@import '../components/Logos/logos';
