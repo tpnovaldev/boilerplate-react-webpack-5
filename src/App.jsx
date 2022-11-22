@@ -15,8 +15,8 @@ export default function App() {
 
   // hook to fetch items
   useEffect(() => {
-    dispatch(fetchUsers())
-  }, [dispatch])
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   const openInNewTab = (url) => {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -26,15 +26,12 @@ export default function App() {
     <div className="main">
       <Logos />
       <div className="content">
-        <Typography style={{ marginBottom: '16rem' }}>
-          Boilerplate React Webpack 5
-        </Typography>
+        <Typography style={{ marginBottom: '16rem' }}>Boilerplate React Webpack 5</Typography>
         <p>
-          Webpack 5 boilerplate for react using babel, sass, with a hot dev
-          server and an optimized production build.Configured with eslint rules.
+          Webpack 5 boilerplate for react using babel, sass, with a hot dev server and an optimized production
+          build.Configured with eslint rules.
           <small>
             Its posted on
-            {' '}
             {new Date().toDateString()}
           </small>
         </p>

@@ -3,7 +3,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
@@ -18,42 +17,6 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/,
   },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader', // Transpile files with Babel and webpack
-          options: {
-            sourceMap: true,
-          },
-        },
-      },
-      {
-        // Convert SCSS files into CSS file
-        test: /\.(s[ac]ss)$/i,
-        use: [
-          { loader: MiniCssExtractPlugin.loader }, // Inject CSS into the DOM
-          { loader: 'css-loader' }, // Resolve CSS imports
-          { loader: 'postcss-loader' }, // Transforming styles with JS plugins
-          { loader: 'sass-loader' }, // Load SCSS and compile to CSS
-        ],
-      },
-      {
-        // Compatibility for images
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset',
-      },
-      {
-        // Compatibility for fonts
-        test: /\.(woff|woff2|eot|ttf)$/,
-        use: [
-          { loader: 'file-loader' },
-        ],
-      },
-    ],
-  },
   resolve: {
     alias: {
       components: path.resolve(__dirname, './src'),
@@ -65,7 +28,7 @@ module.exports = {
   },
   resolveLoader: {
     modules: ['node_modules'],
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
     mainFields: ['loader', 'main'],
   },
   plugins: [
