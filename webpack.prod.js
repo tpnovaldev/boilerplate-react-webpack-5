@@ -22,18 +22,44 @@ module.exports = merge(common, {
         use: {
           loader: 'babel-loader', // Transpile files with Babel and webpack
           options: {
-            sourceMap: true,
+            sourceMap: false,
           },
         },
       },
       {
-        // Convert SCSS files into CSS file
-        test: /\.(s[ac]ss)$/i,
+        // Load SCSS and CSS module files
+        test: /\.module\.s(a|c)ss$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader }, // Resolve CSS imports
-          { loader: 'css-loader' }, // Resolve CSS imports
-          { loader: 'postcss-loader' }, // Transforming styles with JS plugins
-          { loader: 'sass-loader' }, // Load SCSS and compile to CSS
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader', // Resolve CSS module imports
+            options: {
+              modules: true,
+              sourceMap: false,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
+        ],
+      },
+      {
+        // Load SCSS and CSS files
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        use: [
+          MiniCssExtractPlugin.loader, // Resolve CSS imports
+          'css-loader', // Resolve CSS imports
+          'postcss-loader', // Transforming styles with JS plugins
+          {
+            loader: 'sass-loader', // Load SCSS and compile to CSS
+            options: {
+              sourceMap: false,
+            },
+          },
         ],
       },
       {

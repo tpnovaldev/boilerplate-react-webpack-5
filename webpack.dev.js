@@ -15,6 +15,7 @@ module.exports = merge(common, {
     port: 3000,
     open: true,
     hot: true,
+    historyApiFallback: true, // It supports history for react router DOM
   },
   module: {
     rules: [
@@ -29,13 +30,40 @@ module.exports = merge(common, {
         },
       },
       {
-        // Convert SCSS files into CSS file
-        test: /\.(s[ac]ss)$/i,
+        // Load SCSS and CSS module files
+        test: /\.module\.(s(a|c)ss|css)$/,
         use: [
-          { loader: 'style-loader' }, // Resolve CSS imports
-          { loader: 'css-loader' }, // Resolve CSS imports
-          { loader: 'postcss-loader' }, // Transforming styles with JS plugins
-          { loader: 'sass-loader' }, // Load SCSS and compile to CSS
+          'style-loader',
+          {
+            loader: 'css-loader', // Resolve CSS module imports
+            options: {
+              modules: true,
+              sourceMap: true,
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        // Load SCSS and CSS files
+        test: /\.(s(a|c)ss|css)$/,
+        exclude: /\.module.(s(a|c)ss|css)$/,
+        use: [
+          'style-loader', // Resolve CSS imports
+          'css-loader', // Resolve CSS imports
+          'postcss-loader', // Transforming styles with JS plugins
+          {
+            loader: 'sass-loader', // Load SCSS and compile to CSS
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
       },
       {
