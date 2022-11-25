@@ -1,0 +1,59 @@
+@use '../../../styles/utils/variables' as v;
+
+.modal {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #080A0ED9;
+    backdrop-filter: blur(5px);
+  }
+}
+
+.modal__inner {
+  position: relative;
+  padding-top: 100rem;
+}
+
+.modal__title {
+  font-weight: 700;
+  font-size: 36rem;
+  line-height: 48rem;
+  margin-bottom: 24rem;
+  color: #fafafa;
+  span {
+    display: block;
+    font-size: 65%;
+    line-height: 1;
+    color: v.$color-primary;
+  }
+}
+
+.modal__content {
+  ul {
+    list-style: disc;
+    margin: 0;
+    padding: 17rem;
+    li {
+      color: #FFFFFFE0;
+      line-height: 1.6;
+    }
+  }
+  p {
+    color: #FFFFFFE0;
+    line-height: 1.6;
+    margin-bottom: 24rem;
+  }
+}
