@@ -1,0 +1,30 @@
+.rangeslider {
+  position: relative;
+  width: 100%;
+}
+
+.labeled {
+  position: absolute;
+  bottom: -24rem;
+  color: #fff;
+  font-size: 14rem;
+  font-weight: 700;
+  padding: 4rem 8rem;
+  border-radius: 4rem;
+  background-color: rgba(0,0,0,.78);
+}
+
+.bottom__text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 12rem;
+  p {
+    font-size: 14rem;
+    font-weight: 700;
+    margin: 0;
+    span {
+      color: #F5D842;
+    }
+  }
+}
