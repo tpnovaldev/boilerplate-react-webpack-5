@@ -1,0 +1,27 @@
+.btn {
+  display: inline-block;
+  padding: 10rem;
+  color: #fff;
+  border-radius: 5rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, rgba(57, 57, 70, 0.0841) 100%);
+  box-shadow: inset -1px -1px 0.5px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(2px);
+  span {
+    align-items: center;
+    border: 2rem solid hsla(0,0%,100%,.15);
+    border-radius: 6rem;
+    display: inline-flex;
+    font-size: 14rem;
+    height: 40px;
+    justify-content: center;
+    min-width: 32px;
+    padding: 0 10rem;
+  }
+  &--primary {
+    span {
+      font-weight: 600;
+      padding: 0 15rem;
+      background: linear-gradient(0deg, #D3A11E 0%, #F1CD71 100%);
+    }
+  }
+}
