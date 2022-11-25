@@ -22,6 +22,15 @@ module.exports = {
   plugins: ['react', 'jsx-a11y', 'prettier'],
   rules: {
     semi: 0,
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: false,
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
+    'arrow-body-style': ['error', 'as-needed', { requireReturnForObjectLiteral: false }],
     'linebreak-style': ['error', 'windows'],
     'react/jsx-indent': ['error', 2],
     'max-len': [2, 120, 2],
