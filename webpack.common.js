@@ -31,6 +31,20 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
     mainFields: ['loader', 'main'],
   },
+  module: {
+    rules: [
+      {
+        // Compatibility for images
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        type: 'asset',
+      },
+      {
+        // Compatibility for fonts
+        test: /\.(woff|woff2|eot|ttf)$/,
+        use: [{ loader: 'file-loader' }],
+      },
+    ],
+  },
   plugins: [
     // Generate HTML files from template
     new HtmlWebpackPlugin({

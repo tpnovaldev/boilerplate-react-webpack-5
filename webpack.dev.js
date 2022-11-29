@@ -7,6 +7,7 @@ module.exports = merge(common, {
   output: {
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].chunk.bundle.js',
+    clean: true,
   },
   devtool: 'inline-source-map', // Created a source map
   devServer: {
@@ -23,7 +24,7 @@ module.exports = merge(common, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Transpile files with Babel and webpack
+          loader: 'babel-loader', // Loads ES2015+ code and transpiles to ES5 using Babel
           options: {
             sourceMap: true,
           },
@@ -33,17 +34,17 @@ module.exports = merge(common, {
         // Load SCSS and CSS module files
         test: /\.module\.(s(a|c)ss|css)$/,
         use: [
-          'style-loader',
+          'style-loader', // Add exports of a module as style to DOM
           {
-            loader: 'css-loader', // Resolve CSS module imports
+            loader: 'css-loader', // Loads CSS file with resolved imports and returns CSS code
             options: {
               modules: true,
               sourceMap: true,
             },
           },
-          'postcss-loader',
+          'postcss-loader', // Loads and transforms a CSS/SSS file using PostCSS
           {
-            loader: 'sass-loader',
+            loader: 'sass-loader', // Loads and compiles a SASS/SCSS file
             options: {
               sourceMap: true,
             },
@@ -55,26 +56,16 @@ module.exports = merge(common, {
         test: /\.(s(a|c)ss|css)$/,
         exclude: /\.module.(s(a|c)ss|css)$/,
         use: [
-          'style-loader', // Resolve CSS imports
-          'css-loader', // Resolve CSS imports
-          'postcss-loader', // Transforming styles with JS plugins
+          'style-loader', // Add exports of a module as style to DOM
+          'css-loader', // Loads CSS file with resolved imports and returns CSS code
+          'postcss-loader', // Loads and transforms a CSS/SSS file using PostCSS
           {
-            loader: 'sass-loader', // Load SCSS and compile to CSS
+            loader: 'sass-loader', // Loads and compiles a SASS/SCSS file
             options: {
               sourceMap: true,
             },
           },
         ],
-      },
-      {
-        // Compatibility for images
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset',
-      },
-      {
-        // Compatibility for fonts
-        test: /\.(woff|woff2|eot|ttf)$/,
-        use: [{ loader: 'file-loader' }],
       },
     ],
   },

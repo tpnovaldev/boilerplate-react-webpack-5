@@ -20,7 +20,7 @@ module.exports = merge(common, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Transpile files with Babel and webpack
+          loader: 'babel-loader', // Loads ES2015+ code and transpiles to ES5 using Babel
           options: {
             sourceMap: false,
           },
@@ -28,7 +28,7 @@ module.exports = merge(common, {
       },
       {
         // Load SCSS and CSS module files
-        test: /\.module\.s(a|c)ss$/,
+        test: /\.module\.s(a|c)ss|css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -49,7 +49,7 @@ module.exports = merge(common, {
       {
         // Load SCSS and CSS files
         test: /\.s(a|c)ss$/,
-        exclude: /\.module.(s(a|c)ss)$/,
+        exclude: /\.module.(s(a|c)ss|css)$/,
         use: [
           MiniCssExtractPlugin.loader, // Resolve CSS imports
           'css-loader', // Resolve CSS imports
@@ -61,16 +61,6 @@ module.exports = merge(common, {
             },
           },
         ],
-      },
-      {
-        // Compatibility for images
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset',
-      },
-      {
-        // Compatibility for fonts
-        test: /\.(woff|woff2|eot|ttf)$/,
-        use: [{ loader: 'file-loader' }],
       },
     ],
   },
@@ -95,6 +85,7 @@ module.exports = merge(common, {
       },
     },
     minimizer: [
+      '...',
       // Minify CSS
       new CssMinimizerPlugin(),
       // Optimize and minimize JavaScript
