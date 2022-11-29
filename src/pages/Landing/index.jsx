@@ -68,6 +68,7 @@ function Landing() {
               <img src={Wheel} alt="wheel" />
               <img src={Stand} alt="stand" />
             </div>
+            {/* <SpinWheel /> */}
           </div>
         </section>
       </main>

@@ -133,7 +133,7 @@ class SpinWheel extends React.Component {
     ctx.lineWidth = radius * 2;
     ctx.strokeStyle = color;
 
-    ctx.font = '14px Arial';
+    ctx.font = '12px Arial';
     ctx.fillStyle = 'black';
     ctx.stroke();
 
@@ -146,7 +146,7 @@ class SpinWheel extends React.Component {
 
     ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
     image.onload = () => {
-      ctx.drawImage(image, -ctx.measureText(text).width / 20, 0, 100, 100);
+      ctx.drawImage(image, -ctx.measureText(text).width / 24, 100, 64, 64);
     };
     ctx.restore();
   }
