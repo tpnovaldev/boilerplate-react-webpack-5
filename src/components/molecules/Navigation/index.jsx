@@ -1,22 +1,25 @@
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGroup, faBookOpen } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '../../../hooks/useAuth';
+import { logout } from '../../../features/user/userSlice';
 
 import styles from './Navigation.module.scss';
 
 const Navigation = () => {
-  const { user } = useAuth();
+  const dispatch = useDispatch();
+
+  const { userToken } = useSelector((state) => state.user);
 
   return (
     <nav className={styles.nav}>
-      {!user && (
+      {!userToken ? (
         <Link to="/login" className="btn btn--primary">
-          <span>Log In</span>
+          <span>Lets Play</span>
         </Link>
-      )}
-      {!!user && (
+      ) : null}
+      {userToken ? (
         <>
           <Link to="/" className="btn btn--icon">
             <span><FontAwesomeIcon icon={faBookOpen} /></span>
@@ -24,11 +27,11 @@ const Navigation = () => {
           <Link to="/" className="btn btn--icon">
             <span><FontAwesomeIcon icon={faUserGroup} /></span>
           </Link>
-          <Link to="/" className="btn btn--primary">
+          <Link to="/" onClick={() => dispatch(logout())} className="btn btn--primary">
             <span>Finish Session</span>
           </Link>
         </>
-      )}
+      ) : null}
     </nav>
   );
 }

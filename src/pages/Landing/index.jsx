@@ -11,7 +11,7 @@ import SetupTeamModal from './Modals/SetupTeam';
 import Wheel from '../../assets/images/lucky_wheel.png';
 import ImageBg from '../../assets/images/background.jpg';
 
-function Landing() {
+function LandingPage() {
   // const navigate = useNavigate();
 
   const [welcomeModalOpen, setWelcomeModalOpen] = React.useState(false);
@@ -85,4 +85,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default LandingPage;
