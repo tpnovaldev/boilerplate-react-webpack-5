@@ -34,14 +34,12 @@ module.exports = {
   module: {
     rules: [
       {
-        // Compatibility for images
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset',
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
       {
-        // Compatibility for fonts
-        test: /\.(woff|woff2|eot|ttf)$/,
-        use: [{ loader: 'file-loader' }],
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
   },
