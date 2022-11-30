@@ -1,12 +1,31 @@
 import React from 'react';
-import { BaseLayout } from '../../components';
+import { useSelector } from 'react-redux';
+import { BaseLayout, Container } from '../../components';
 
-function Succeed() {
+import styles from './Succeed.module.scss';
+
+import ImageBg from '../../assets/images/background.jpg';
+
+function SucceedPage() {
+  const { userToken } = useSelector((state) => state.user);
+
   return (
     <BaseLayout>
-      <div>Succeed</div>
+      <section id="succeed" className="section-page" style={{ backgroundImage: `url(${ImageBg})` }}>
+        <Container>
+          <div className={styles.succeedWrapper}>
+            <p>
+              Succeed, your token is
+              {' '}
+              <strong>
+                {userToken?.token}
+              </strong>
+            </p>
+          </div>
+        </Container>
+      </section>
     </BaseLayout>
   )
 }
 
-export default Succeed;
+export default SucceedPage;
