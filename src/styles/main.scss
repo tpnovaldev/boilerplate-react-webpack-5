@@ -37,6 +37,7 @@
     width: 100%;
     height: 100%;
     background-color: #0E0C14E0;
+    backdrop-filter: blur(10px);
   }
   > .container {
     z-index: 10;
