@@ -5,12 +5,12 @@
 
 .labeled {
   position: absolute;
-  bottom: -24rem;
+  bottom: -1.5rem;
   color: #fff;
-  font-size: 14rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  padding: 4rem 8rem;
-  border-radius: 4rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
   background-color: rgba(0,0,0,.78);
 }
 
@@ -18,9 +18,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 12rem;
+  margin-top: 0.75rem;
   p {
-    font-size: 14rem;
+    font-size: 0.875rem;
     font-weight: 700;
     margin: 0;
     span {

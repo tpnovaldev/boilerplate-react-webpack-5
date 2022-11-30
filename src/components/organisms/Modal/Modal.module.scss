@@ -1,4 +1,4 @@
-@use '../../../styles/utils/variables' as v;
+@use '../../../styles/abstracts/variables' as v;
 
 .modal {
   position: absolute;
@@ -24,20 +24,20 @@
 
 .modal__inner {
   position: relative;
-  padding-top: 100rem;
+  padding-top: 6.25rem;
 }
 
 .modal__title {
   font-weight: 700;
-  font-size: 36rem;
-  line-height: 48rem;
-  margin-bottom: 24rem;
+  font-size: 2.25rem;
+  line-height: 3rem;
+  margin-bottom: 1.5rem;
   color: #fafafa;
   span {
     display: block;
     font-size: 65%;
     line-height: 1;
-    color: v.$color-primary;
+    color: v.$brand-color;
   }
 }
 
@@ -45,7 +45,7 @@
   ul {
     list-style: disc;
     margin: 0;
-    padding: 17rem;
+    padding-left: 1.375rem;
     li {
       color: #FFFFFFE0;
       line-height: 1.6;
@@ -54,6 +54,6 @@
   p {
     color: #FFFFFFE0;
     line-height: 1.6;
-    margin-bottom: 24rem;
+    margin-bottom: 1.5rem;
   }
 }
