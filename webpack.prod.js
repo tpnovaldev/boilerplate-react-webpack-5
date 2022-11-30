@@ -30,16 +30,17 @@ module.exports = merge(common, {
         // Load SCSS and CSS module files
         test: /\.module\.s(a|c)ss|css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader, // Extracts CSS into separate files
           {
-            loader: 'css-loader', // Resolve CSS module imports
+            loader: 'css-loader', // Loads CSS file with resolved imports and returns CSS code
             options: {
               modules: true,
               sourceMap: false,
             },
           },
+          'postcss-loader', // Loads and transforms a CSS/SSS file using PostCSS
           {
-            loader: 'sass-loader',
+            loader: 'sass-loader', // Loads and compiles a SASS/SCSS file
             options: {
               sourceMap: false,
             },
@@ -51,11 +52,11 @@ module.exports = merge(common, {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss|css)$/,
         use: [
-          MiniCssExtractPlugin.loader, // Resolve CSS imports
-          'css-loader', // Resolve CSS imports
-          'postcss-loader', // Transforming styles with JS plugins
+          MiniCssExtractPlugin.loader, // Extracts CSS into separate files
+          'css-loader', // Loads CSS file with resolved imports and returns CSS code
+          'postcss-loader', // Loads and transforms a CSS/SSS file using PostCSS
           {
-            loader: 'sass-loader', // Load SCSS and compile to CSS
+            loader: 'sass-loader', // Loads and compiles a SASS/SCSS file
             options: {
               sourceMap: false,
             },
@@ -85,7 +86,7 @@ module.exports = merge(common, {
       },
     },
     minimizer: [
-      '...',
+      // '...',
       // Minify CSS
       new CssMinimizerPlugin(),
       // Optimize and minimize JavaScript
