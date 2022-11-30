@@ -6,7 +6,7 @@ import styles from './BaseLayout.module.scss';
 const BaseLayout = ({ children }) => (
   <div className={styles.wrapper}>
     <Header />
-    <main>
+    <main className={styles.main}>
       {children}
     </main>
   </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { usersSelector } from '../../features/users/userSlice';
 // import { fetchUsers } from '../../features/users/userService';
@@ -12,8 +13,14 @@ import Stand from '../../assets/images/stand.svg';
 import ImageBg from '../../assets/images/background.jpg';
 
 function Landing() {
+  // const navigate = useNavigate();
+
   const [welcomeModalOpen, setWelcomeModalOpen] = React.useState(false);
   const [teamModalOpen, setTeamModalOpen] = React.useState(false);
+
+  // React.useEffect(() => {
+  //   navigate('/start-your-game#welcome');
+  // }, [])
 
   React.useEffect(() => {
     if (window.location.hash === '#welcome') {

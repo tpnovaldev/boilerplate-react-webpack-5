@@ -15,6 +15,7 @@
   'base/base',
   'base/fonts',
   'base/typography',
+  'base/button',
   'base/form',
   'base/helpers';
 
@@ -22,6 +23,44 @@
 @import
   'themes/default',
   'themes/admin';
+
+
+.section-page {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0E0C14E0;
+  }
+  > .container {
+    z-index: 10;
+  }
+}
+
+.content {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1rem;
+  h6 {
+    margin-bottom: 0.875rem;
+    margin-top: 2rem;
+    font-weight: 700;
+    color: #5c5c5c;
+  }
+  small {
+    display: block;
+    margin-top: 0.625rem;
+    color: #3e3e3e91;
+  }
+}
 
 .wheel {
   position: absolute;
@@ -41,11 +80,10 @@
       margin-bottom: -150px;
       z-index: 2;
       @media (max-width: 991.98px) {
-        width: 110%;
-        margin-bottom: -110px;
+        width: 90%;
+        margin-bottom: -120px;
       }
       @media (max-width: 767.98px) {
-        width: 90%;
         margin-bottom: -150px;
       }
     }
@@ -53,7 +91,7 @@
       width: 70%;
       z-index: 1;
       @media (max-width: 991.98px) {
-        width: 90%;
+        width: 80%;
       }
     }
   }
