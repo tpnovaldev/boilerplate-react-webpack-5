@@ -1,26 +1,22 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const path = require('path');
 const { merge } = require('webpack-merge');
+const paths = require('./paths');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'development',
-  output: {
-    path: path.resolve(__dirname, '..', 'build'),
-    filename: '[name].[contenthash].js',
-    chunkFilename: '[name].chunk.bundle.js',
-    assetModuleFilename: (pathData) => {
-      const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
-      return `${filepath}/[name].[hash][ext][query]`;
-    },
-    clean: true,
-  },
-  devtool: 'inline-source-map', // Created a source map
+  devtool: 'inline-source-map', // Control how source maps are generated
+  // ENABLE "target: 'web'"  for use Hot Reload / HMR in Chrome ( not in IE 11 )
+  // DISABLE ['web', 'es5'] for use IE 11 during testing =>
+  // Hot Reload / HMR will stop working in Chrome due to a bug in Webpack 5
+  // target: ['web', 'es5'],
+  target: 'web',
   devServer: {
     // Running source files in development server
-    static: './build',
+    static: paths.build,
     port: 3000,
     open: true,
+    compress: true,
     hot: true,
     historyApiFallback: true, // It supports history for react router DOM
   },
@@ -30,7 +26,7 @@ module.exports = merge(common, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Loads ES2015+ code and transpiles to ES5 using Babel
+          loader: 'babel-loader', // Loads ES2015+ code and transpiled to ES5 using Babel
           options: {
             sourceMap: true,
           },

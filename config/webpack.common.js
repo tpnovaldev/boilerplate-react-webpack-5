@@ -4,19 +4,33 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const paths = require('./paths');
 
 // const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/index.js',
+  output: {
+    path: paths.build,
+    publicPath: '/',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].chunk.bundle.js',
+    assetModuleFilename: (pathData) => {
+      const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
+      return `${filepath}/[name].[hash][ext][query]`;
+    },
+    clean: true,
+  },
   watchOptions: {
     ignored: /node_modules/,
   },
   resolve: {
-    alias: {
-      components: path.resolve(__dirname, './src'),
-    },
     extensions: ['.js', '.jsx'],
+    alias: {
+      components: path.resolve(__dirname, '../src/components'),
+      images: path.resolve(__dirname, '../src/assets/images'),
+      styles: path.resolve(__dirname, '../src/styles'),
+    },
     fallback: {
       fs: false,
     },
@@ -45,11 +59,15 @@ module.exports = {
   plugins: [
     // Generate HTML files from template
     new HtmlWebpackPlugin({
+      // title: 'Boilerplate React Webpack 5',
+      // favicon: './public/favicon.png',
+      // template: './public/index.html',
+      // filename: 'index.html',
+      // inject: 'body',
       title: 'Boilerplate React Webpack 5',
-      favicon: './public/favicon.png',
-      template: './public/index.html',
-      filename: 'index.html',
-      inject: 'body',
+      favicon: `${paths.src}/assets/images/favicon.png`,
+      template: `${paths.src}/template.html`, // template file
+      filename: 'index.html', // output file
     }),
     // Checking & fixing JavaScript code
     new ESLintPlugin({

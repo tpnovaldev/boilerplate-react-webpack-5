@@ -6,11 +6,13 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const common = require('./webpack.common');
+const paths = require('./paths');
 
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, '..', 'build'),
+    path: paths.build,
+    publicPath: '/',
     filename: 'assets/js/[name].[contenthash].js',
     chunkFilename: 'assets/js/components/[name].chunk.bundle.js',
     assetModuleFilename: (pathData) => {
@@ -20,21 +22,15 @@ module.exports = merge(common, {
     clean: true, // Clean source files
   },
   devtool: 'source-map', // Created a source map
-  devServer: {
-    // Running source files in development server
-    static: {
-      publicPath: '/',
-    },
-    hot: true,
-    historyApiFallback: true, // It supports history for react router DOM
-  },
+  // Production: Magic happen here transpiling to es5 to partly support older browser like IE11
+  target: ['web', 'es5'],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Loads ES2015+ code and transpiles to ES5 using Babel
+          loader: 'babel-loader', // Loads ES2015+ code and transpiled to ES5 using Babel
           options: {
             sourceMap: false,
           },
@@ -142,6 +138,15 @@ module.exports = merge(common, {
           },
         },
       }),
+      '...',
     ],
+    runtimeChunk: {
+      name: 'runtime',
+    },
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
   },
 });
