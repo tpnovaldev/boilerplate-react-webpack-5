@@ -1,13 +1,9 @@
-html { 
-  font-size: 1px; /* for using REM units */
-}
-
+/**
+ * Basic typography style for copy text
+ */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16rem;
-  font-weight: 400;
-  line-height: 1.3;
-  color: #222;
+  color: $text-color;
+  font: normal 125% / 1.4 $text-font-stack;
 }
 
 h1,
@@ -20,7 +16,42 @@ h6 {
   font-weight: 600;
 }
 
+h1,
+.h1 {
+  font-size: 3.5rem;
+}
+h2,
+.h2 {
+  font-size: 3rem;
+}
+h3,
+.h3 {
+  font-size: 2rem;
+}
+h4,
+.h4 {
+  font-size: 1.5rem;
+}
+h5,
+.h5 {
+  font-size: 1rem;
+}
+h6,
+.h6 {
+  font-size: 0.875rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
 button {
   font-family: 'Darker Grotesque', sans-serif;
   font-weight: 600;
+}
+
+mark {
+  color: #F5D842;
+  font-weight: 700;
+  background-color: transparent;
 }

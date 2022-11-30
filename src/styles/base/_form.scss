@@ -3,26 +3,26 @@
   width: 100%;
   max-width: 300px;
   &__group {
-    margin-bottom: 16rem;
+    margin-bottom: 1rem;
   }
   &__input-group {
     position: relative;
-    margin-bottom: 16rem;
+    margin-bottom: 1rem;
   }
   &__label {
+    font-size: 1.25rem;
     color: #fafafa;
-    font-size: 16rem;
     font-weight: 500;
     display: block;
-    margin-bottom: 12rem;
+    margin-bottom: 0.75rem;
   }
   &__input {
     width: 100%;;
-    padding: 8rem 16rem;
+    padding: 0.5rem 1rem;
     display: block;
     height: 48px;
     color: #fafafa;
-    border-radius: 8rem;
+    border-radius: 0.5rem;
     background-color: #080A0ED9;
     border: 1px solid #FFFFFF0D;
     outline: none;
@@ -66,8 +66,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4rem;
+  border-radius: 0.25rem;
   background-color: #FFFFFF08;
+  border: none;
   img {
     width: 16px;
     height: 16px;

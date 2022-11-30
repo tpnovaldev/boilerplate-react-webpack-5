@@ -1,53 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800&display=swap');
+@charset "UTF-8";
 
-// Base Components
-@import './base/normalize';
-@import './base/reset';
-@import './base/button';
-@import './base/form';
-@import './base/typography';
+// 1. Configuration and helpers
+@import
+  'abstracts/variables',
+  'abstracts/functions',
+  'abstracts/mixins';
 
-// Layout Components
-@import './layouts/mainLayout';
-@import './layouts/header';
-@import './layouts/navigation';
-@import './layouts/footer';
+// 2. Vendors
+@import
+  'vendors/normalize';
 
-// Components
-@import '../components/atoms/Container/container';
+// 3. Base stuff
+@import
+  'base/base',
+  'base/fonts',
+  'base/typography',
+  'base/form',
+  'base/helpers';
 
-main {
-  position: relative;
-  width: 100%;
-  > section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    &::before {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: #000;
-    }
-    .container {
-      position: relative;
-      z-index: 2;
-    }
-  }
-}
+// 4. Themes
+@import
+  'themes/default',
+  'themes/admin';
 
 .wheel {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 100;
+  z-index: 10;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -77,10 +57,4 @@ main {
       }
     }
   }
-}
-
-mark {
-  color: #F5D842;
-  font-weight: 700;
-  background-color: transparent;
 }
