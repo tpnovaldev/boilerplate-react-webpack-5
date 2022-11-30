@@ -38,6 +38,7 @@ module.exports = {
     'react/prop-types': [2, { ignore: ['history'] }],
     'jsx-a11y/label-has-associated-control': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/function-component-definition': 'off',
     'react/no-set-state': 'off',
     'prettier/prettier': 0,
     'react/jsx-props-no-spreading': 'off',
