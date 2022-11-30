@@ -15,3 +15,4 @@ export const RangeSlider = React.lazy(() => import(/* webpackChunkName: "rangesl
 export const SpinWheel = React.lazy(() => import(/* webpackChunkName: "spinwheel" */ './organisms/SpinWheel'));
 // Template Components
 export const BaseLayout = React.lazy(() => import(/* webpackChunkName: "baselayout" */ './templates/BaseLayout'));
+export const AuthLayout = React.lazy(() => import(/* webpackChunkName: "authlayout" */ './templates/AuthLayout'));

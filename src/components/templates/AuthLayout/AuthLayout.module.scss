@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: #fafafa;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  > section {
+    background-position: 50%;
+    background-size: cover;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}

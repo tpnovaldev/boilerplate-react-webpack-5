@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const path = require('path');
 const { merge } = require('webpack-merge');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -9,11 +10,24 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
   mode: 'production',
   output: {
+    path: path.resolve(__dirname, '..', 'build'),
     filename: 'assets/js/[name].[contenthash].js',
     chunkFilename: 'assets/js/components/[name].chunk.bundle.js',
+    assetModuleFilename: (pathData) => {
+      const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
+      return `${filepath}/[name].[hash][ext][query]`;
+    },
     clean: true, // Clean source files
   },
   devtool: 'source-map', // Created a source map
+  devServer: {
+    // Running source files in development server
+    static: {
+      publicPath: '/',
+    },
+    hot: true,
+    historyApiFallback: true, // It supports history for react router DOM
+  },
   module: {
     rules: [
       {
@@ -69,22 +83,22 @@ module.exports = merge(common, {
     // This extracts CSS into separate files
     new MiniCssExtractPlugin({
       filename: 'assets/css/[name].[contenthash].min.css',
-      chunkFilename: 'assets/css/[id].min.css',
+      chunkFilename: 'assets/css/components/[id].[contenthash].min.css',
     }),
   ],
   optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
+    // moduleIds: 'deterministic',
+    // runtimeChunk: 'single',
     // Code splitting
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
+    // splitChunks: {
+    //   // cacheGroups: {
+    //   //   vendors: {
+    //   //     test: /[\\/]node_modules[\\/]/,
+    //   //     name: 'vendors',
+    //   //     chunks: 'all',
+    //   //   },
+    //   // },
+    // },
     minimizer: [
       // '...',
       // Minify CSS

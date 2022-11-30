@@ -1,18 +1,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'development',
   output: {
+    path: path.resolve(__dirname, '..', 'build'),
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].chunk.bundle.js',
+    assetModuleFilename: (pathData) => {
+      const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
+      return `${filepath}/[name].[hash][ext][query]`;
+    },
     clean: true,
   },
   devtool: 'inline-source-map', // Created a source map
   devServer: {
     // Running source files in development server
-    static: './dist',
+    static: './build',
     port: 3000,
     open: true,
     hot: true,

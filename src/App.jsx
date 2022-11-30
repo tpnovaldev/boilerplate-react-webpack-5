@@ -3,15 +3,18 @@ import { AnimatePresence } from 'framer-motion';
 import {
   Routes,
   Route,
-  Navigate,
-  useLocation,
+  // useLocation,
 } from 'react-router-dom';
 
-import Landing from './pages/Landing';
-import Succeed from './pages/Succeed';
+import AuthPage from './pages/Auth';
+import LandingPage from './pages/Landing';
+import SucceedPage from './pages/Succeed';
+
+import { HomeLayout } from './components/templates/HomeLayout';
+import { ProtectedLayout } from './components/templates/ProtectedLayout';
 
 function App() {
-  const location = useLocation();
+  // const location = useLocation();
 
   return (
     <AnimatePresence
@@ -26,10 +29,14 @@ function App() {
       onExitComplete={() => null}
     >
       <Suspense fallback={<div>Loading...</div>}>
-        <Routes key={location.pathname} location={location}>
-          <Route path="/" element={<Navigate to="/start-your-game" />} />
-          <Route path="/start-your-game" element={<Landing />} />
-          <Route path="/succeed" element={<Succeed />} />
+        <Routes>
+          <Route element={<HomeLayout />}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<AuthPage />} />
+          </Route>
+          <Route path="/dashboard" element={<ProtectedLayout />}>
+            <Route path="succeed" element={<SucceedPage />} />
+          </Route>
         </Routes>
       </Suspense>
     </AnimatePresence>

@@ -5,15 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
+// const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    assetModuleFilename: (pathData) => {
-      const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
-      return `${filepath}/[name].[hash][ext][query]`;
-    },
-  },
   watchOptions: {
     ignored: /node_modules/,
   },
@@ -34,6 +29,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
@@ -50,6 +49,7 @@ module.exports = {
       favicon: './public/favicon.png',
       template: './public/index.html',
       filename: 'index.html',
+      inject: 'body',
     }),
     // Checking & fixing JavaScript code
     new ESLintPlugin({

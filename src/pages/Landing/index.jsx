@@ -8,29 +8,31 @@ import { BaseLayout, Modal } from '../../components';
 import HowToPlayModal from './Modals/HowToPlay';
 import SetupTeamModal from './Modals/SetupTeam';
 
-import Wheel from '../../assets/images/lucky_wheel.svg';
-import Stand from '../../assets/images/stand.svg';
+import Wheel from '../../assets/images/lucky_wheel.png';
 import ImageBg from '../../assets/images/background.jpg';
 
 function Landing() {
   // const navigate = useNavigate();
 
   const [welcomeModalOpen, setWelcomeModalOpen] = React.useState(false);
-  const [teamModalOpen, setTeamModalOpen] = React.useState(false);
+  const [
+    teamModalOpen,
+    // setTeamModalOpen
+  ] = React.useState(false);
 
   // React.useEffect(() => {
   //   navigate('/start-your-game#welcome');
   // }, [])
 
-  React.useEffect(() => {
-    if (window.location.hash === '#welcome') {
-      setWelcomeModalOpen(true);
-      setTeamModalOpen(false);
-    } else if (window.location.hash === '#team') {
-      setTeamModalOpen(true);
-      setWelcomeModalOpen(false);
-    }
-  }, [window.location.hash]);
+  // React.useEffect(() => {
+  //   if (window.location.hash === '#welcome') {
+  //     setWelcomeModalOpen(true);
+  //     setTeamModalOpen(false);
+  //   } else if (window.location.hash === '#team') {
+  //     setTeamModalOpen(true);
+  //     setWelcomeModalOpen(false);
+  //   }
+  // }, [window.location.hash]);
 
   // // set up dispatch
   // const dispatch = useDispatch();
@@ -53,7 +55,6 @@ function Landing() {
         <div className="container">
           <div className="wheel">
             <img src={Wheel} alt="wheel" />
-            <img src={Stand} alt="stand" />
           </div>
           {/* <SpinWheel /> */}
         </div>

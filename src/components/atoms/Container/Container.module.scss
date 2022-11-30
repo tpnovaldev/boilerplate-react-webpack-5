@@ -1,4 +1,6 @@
 .container {
+  position: relative;
+  z-index: 10;
   width: 100%;
   padding-right: 0.9375rem;
   padding-left: 0.9375rem;

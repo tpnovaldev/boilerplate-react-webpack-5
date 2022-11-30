@@ -1,0 +1,32 @@
+.loginWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 180px;
+  }
+  h3 {
+    margin-bottom: 0;
+    line-height: 1.2;
+    color: #fefefe;
+  }
+  p {
+    color: #f3f3f3;
+    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
+  }
+  button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.registerLink {
+  margin-top: 2rem;
+  display: inline-block;
+  &:hover {
+    text-decoration: underline;
+  }
+}
