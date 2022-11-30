@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Users.module.scss';
 
-function Users({ loading, error, data }) {
+const Users = ({ loading, error, data }) => {
   // Loading user state
   if (loading) return <p>Loading please wait...</p>;
 
