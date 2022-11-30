@@ -1,12 +1,12 @@
 {
   "name": "boilerplate-react-webpack-5",
-  "homepage": ".",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Webpack 5 boilerplate for react using babel, sass, with a hot dev server and an optimized production build.Configured with eslint rules.",
   "private": true,
   "scripts": {
-    "serve": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "serve": "webpack serve --open --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js",
+    "prod": "http-server ./dist -a localhost -p 8005 -o",
     "lint:scss": "stylelint \"./src/**/*.scss\" --customSyntax postcss-scss",
     "lint:scss:fix": "stylelint \"./src/**/*.scss\" --customSyntax postcss-scss --fix --ignore-path ./.gitignore",
     "lint:js": "eslint . --ext .js,.jsx",
@@ -14,7 +14,7 @@
     "lint:format": "prettier  --loglevel warn --write \"./**/*.{js,jsx,css,md,json}\" ",
     "lint": "npm run lint:format && npm run lint:scss:fix && npm run lint:js:fix"
   },
-  "author": "",
+  "author": "MadeIndonesia",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -61,6 +61,7 @@
     "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.1",
     "husky": "^8.0.2",
     "image-minimizer-webpack-plugin": "^3.8.1",
     "imagemin": "^8.0.1",
