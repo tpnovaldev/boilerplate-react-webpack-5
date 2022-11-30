@@ -1,8 +1,11 @@
 import React from 'react';
+import { BaseLayout } from '../../components';
 
 function Succeed() {
   return (
-    <div>Succeed</div>
+    <BaseLayout>
+      <div>Succeed</div>
+    </BaseLayout>
   )
 }
 
