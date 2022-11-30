@@ -26,7 +26,7 @@ function HowToPlayModal() {
           Donec finibus, urna bibendum ultricies laoreet, augue eros luctus sapien, ut euismod leo tortor ac enim.
         </li>
       </ul>
-      <p style={{ display: 'block', marginBottom: '48rem' }}>
+      <p style={{ display: 'block', marginBottom: '3rem' }}>
         <b>
           A session of TeamConnector may require
           {' '}
